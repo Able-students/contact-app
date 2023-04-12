@@ -7,22 +7,24 @@ export interface ContactType {
     phone: string,
 }
 
-type ContactListType = ContactType[]
+export type ContactListType = ContactType[]
 
-export type StateType = {
+export type InitialStateType = {
     contactList: ContactListType
 }
 
 type ActionType = {
     type: string,
-    payload: ContactListType
+    payload: ContactListType 
 }
 
-const initialState: StateType = {
-    contactList: []
+const list: string | null = localStorage.getItem('contactList')
+
+const initialState: InitialStateType = {
+    contactList: (list && list.length > 0) ? JSON.parse(list) : [],
 }
 
-function reducer(state:StateType = initialState, action: ActionType){
+function reducer(state:InitialStateType = initialState, action: ActionType){
     switch(action.type){
         case types.SET_CONTACT_LIST: 
             return {

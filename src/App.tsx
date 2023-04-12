@@ -1,4 +1,5 @@
 import AddContact from './components/AddContact';
+import EditContact from './components/EditContact';
 import Main from './components/Main';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/add" element={<AddContact/>}/>
         <Route path="/" element={<Main/>}/>
+        <Route path="/edit" element={<EditContact/>}/>
       </Routes>
     </BrowserRouter>
     </Provider>
