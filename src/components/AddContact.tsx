@@ -16,12 +16,12 @@ const AddContact = () => {
             phone: form.getFieldValue('phone')
         }
         actions.addContact(contact)
-        navigator('/')
+        navigator('/contacts')
     }
     return (
         <Layout>
         <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
-          <h3 className='header__text' onClick={() => navigator('/')}>My book</h3>
+          <h3 className='header__text' onClick={() => navigator('/contacts')}>My book</h3>
         </Header>
         <Content className="site-layout" style={{ padding: '0 50px' }}>
           <h2>{content}</h2>

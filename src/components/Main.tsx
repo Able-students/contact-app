@@ -5,14 +5,19 @@ import type { ColumnsType } from 'antd/es/table';
 import { ContactType, ContactListType } from '../store/reducer/contactReducer';
 import { useSelector } from 'react-redux';
 import * as actions from '../store/actions/contactActions';
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
+import { InitialStateType } from '../store/reducer/userReducer';
 
 const { Header, Content } = Layout;
 
 const Main = () => {
+    const [isPending, startTransition] = useTransition();
+    console.log(isPending,'--isPending');
+  
     const navigator = useNavigate()
     type RootState = ReturnType<typeof store.getState>
     const { contactList } = useSelector((state: RootState) => state.contactReducer)
+    const { currentUser } = useSelector((state: RootState) => state.userReducer) as InitialStateType
     console.log(contactList);
     
     const columns: ColumnsType<ContactType> = [
@@ -65,7 +70,8 @@ const Main = () => {
     return (
     <Layout>
       <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
-        <h3 className='header__text'>My book</h3>
+        <h3 className='header__text'>My book  <span style={{position: 'absolute', right: '30px'}}>{currentUser?.username}</span></h3>
+       
       </Header>
       <Content className="site-layout" style={{ padding: '0 50px' }}>
         <h2>Welcome to react redux contact book</h2>
@@ -77,6 +83,7 @@ const Main = () => {
           columns={columns} 
         />;
       </Content>
+      {isPending && <h2>loading</h2>}
     </Layout>
     )
 }

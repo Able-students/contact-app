@@ -1,0 +1,15 @@
+.row {
+    display: flex;
+    justify-content: center;
+    margin: 10% auto;
+}
+
+.auth-block {
+    margin: auto;
+}
+
+.auth-forms {
+    padding: 20px;
+    box-shadow: 0 0 5px 5px rgba(200, 197, 197, 0.85);
+    margin: 30px;
+}

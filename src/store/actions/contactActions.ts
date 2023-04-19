@@ -24,8 +24,5 @@ export const editContact = (contact:ContactType) => {
         }
         return elem
     })
-    store.dispatch({
-        type: types.SET_CONTACT_LIST,
-        payload: newList
-    })
+    setContactList(newList)
 }
