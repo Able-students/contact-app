@@ -2,9 +2,19 @@ import { Button, Form, Input, Layout } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import * as actions from '../store/actions/contactActions';
 
+import store from '../store/store';
+import { useSelector } from 'react-redux';
+import { InitialStateType } from '../store/reducer/userReducer';
+
+
+
 const { Header, Content } = Layout;
 
 const AddContact = () => {
+    type RootState = ReturnType<typeof store.getState>
+    const { currentUser } = useSelector((state: RootState) => state.userReducer) as InitialStateType
+    console.log(currentUser?.id);
+
     const navigator = useNavigate()
     const [form] = Form.useForm();
     const content: string = 'Add contact';
@@ -13,7 +23,8 @@ const AddContact = () => {
             key: Math.round(Math.random() * 100000),
             name: form.getFieldValue('name'),
             email: form.getFieldValue('email'),
-            phone: form.getFieldValue('phone')
+            phone: form.getFieldValue('phone'),
+            name_id: currentUser?.id
         }
         actions.addContact(contact)
         navigator('/contacts')
@@ -21,7 +32,7 @@ const AddContact = () => {
     return (
         <Layout>
         <Header style={{ position: 'sticky', top: 0, zIndex: 1, width: '100%' }}>
-          <h3 className='header__text' onClick={() => navigator('/contacts')}>My book</h3>
+          <h3 className='header__text' onClick={() => navigator('/contacts')}>My book <span style={{position: 'absolute', right: '30px'}}  onClick={() => navigator('/')}>{currentUser?.username}</span></h3>
         </Header>
         <Content className="site-layout" style={{ padding: '0 50px' }}>
           <h2>{content}</h2>

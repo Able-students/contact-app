@@ -3,10 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import * as actions from '../store/actions/contactActions';
 import store from '../store/store';
 import { useSelector } from 'react-redux';
+import { InitialStateType } from '../store/reducer/userReducer';
 
 const { Header, Content } = Layout;
 
 const EditContact = (props: any) => {
+    
+    
+    
     const navigator = useNavigate()
     const [form] = Form.useForm();
     const content: string = 'Edit contact';
@@ -16,6 +20,7 @@ const EditContact = (props: any) => {
     // console.log(localId);
     
     type RootState = ReturnType<typeof store.getState>
+    const { currentUser } = useSelector((state: RootState) => state.userReducer) as InitialStateType
     const { contactList } = useSelector((state: RootState) => state.contactReducer)
     const editedContact = contactList.find(elem => elem.key === +id)
 
@@ -24,7 +29,8 @@ const EditContact = (props: any) => {
             key: +id,
             name: form.getFieldValue('name'),
             email: form.getFieldValue('email'),
-            phone: form.getFieldValue('phone')
+            phone: form.getFieldValue('phone'),
+            name_id: currentUser?.id
         }
         actions.editContact(contact)
         navigator('/contacts')

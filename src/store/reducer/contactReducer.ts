@@ -5,6 +5,7 @@ export interface ContactType {
     name: string,
     email: string,
     phone: string,
+    name_id: string|undefined,
 }
 
 export type ContactListType = ContactType[]

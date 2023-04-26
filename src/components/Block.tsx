@@ -14,16 +14,16 @@ const Block = (props : BlockPropsType) => {
     const refDiv = useRef<HTMLButtonElement>(null)
 
     const onClick = (event : React.MouseEvent) => {
-        console.log(refDiv.current);
+        // console.log(refDiv.current);
         alert('Alert')
     }
 
     const onChange = (event : React.ChangeEvent<HTMLInputElement>, text?: string) => {
-        console.log(event.target.checked)
+        // console.log(event.target.checked)
     }
 
     const onSelectChange = (event : React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
 
     const onFocus = (event : React.FocusEvent<HTMLInputElement>) => {
@@ -31,8 +31,8 @@ const Block = (props : BlockPropsType) => {
     }
 
     const onKeyDown = (event : React.KeyboardEvent<HTMLInputElement>) => {
-        console.log(event.currentTarget.value)
-        console.log(event.key)
+        // console.log(event.currentTarget.value)
+        // console.log(event.key)
     }
 
     return(

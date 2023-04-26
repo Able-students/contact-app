@@ -39,3 +39,18 @@ export const register = (user: UserType) => {
         })
     }
 }
+
+export const variant = () => {
+    const {userVariant} = store.getState().userReducer as InitialStateType
+         store.dispatch({
+            type: types.SET_USER_VARIANT,
+            payload: !userVariant
+        })
+}
+
+export const logout = () => {
+    store.dispatch({
+        type: types.SET_CURRENT_USER,
+        payload: {email: '', password: '',id:''}
+    })
+}
